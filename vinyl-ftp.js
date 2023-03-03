@@ -1,10 +1,16 @@
 var fs = require("vinyl-fs");
 var ftp = require("vinyl-ftp");
+var reader = require("properties-reader");
+var config = reader("config/config.properties");
+
+const host = config.get("hosting.host");
+const user = config.get("hosting.user");
+const password = config.get("hosting.password");
 
 var conn = new ftp({
-  host: "ftpupload.net",
-  user: "epiz_33660974",
-  password: "1QgOwjKFV2GZ13",
+  host: host,
+  user: user,
+  password: password,
   parallel: 10,
   secure: true,
   secureOptions: { rejectUnauthorized: false },
